@@ -102,6 +102,8 @@ clc;
 run suppfigure2.m
 
 %% Supp. Fig. 3 Precision of contact predictions vs. the top x pairs obtained using DCA
+% the predictions of the DCA were generated using the code dca_Ahmed_W.m, a
+% modified version of the original code provided by Morcos et al.
 clear;
 clc;
 run suppfigure3.m

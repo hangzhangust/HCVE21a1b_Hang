@@ -39,7 +39,7 @@ set(get(gca,'XLabel'), 'Units', 'Normalized', 'Position', [0.5, -0.2, 0]);
 set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.18, 0.5, 0]);
 set(findobj('FontSize',8),'FontSize',figure_FontSize);
 % set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
-try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      end
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      end
 
 %% 
 load('Neutrality_new.mat')
@@ -87,10 +87,10 @@ set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.18, 0.5, 0]);
 set(findobj('FontSize',8),'FontSize',figure_FontSize);
 % set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
 % set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
-try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); 
-catch      
-
-end
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); 
+% catch      
+% 
+% end
 
 %% Peak analysis
 
@@ -239,8 +239,8 @@ set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle');
 set(gca,'TickLength',[0.035, 0.03])
 set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.25, 0.53, 0]);
 set(findobj('FontSize',10),'FontSize',figure_FontSize);
-try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); 
-catch   end
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); 
+% catch   end
 
 
 
@@ -285,8 +285,8 @@ set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.32, 0.5, 0]);
 set(findobj('FontSize',10),'FontSize',figure_FontSize);
 set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
 set(gca,'TickLength',[0.035, 0.03])
-try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch     end
-
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch     end
+% 
 
 
 
@@ -337,8 +337,8 @@ set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle');
 set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.25, 0.5, 0]);
 set(findobj('FontSize',10),'FontSize',figure_FontSize);
 set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
-try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch    end
-
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch    end
+% 
 
 %%
 FIG = figure;
@@ -419,69 +419,69 @@ set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.32, 0.5, 0]);
 set(findobj('FontSize',10),'FontSize',figure_FontSize);
 % set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
 set(gca,'TickLength',[0.035, 0.03])
-try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch        end
-%%
-
-set(0,'DefaultAxesFontName','Arial')
-set(0,'DefaultTextFontName','Arial')
-set(0,'DefaultAxesFontSize',8)
-set(0,'DefaultTextFontSize',8)
-
-
-load('Peak_trajectory.mat')
-
-percent_1a = sum(stat_1a)/sum(sum(stat_1a));
-percent_1a(2) = percent_1a(2)+percent_1a(3);
-percent_1a = percent_1a(1:2);
-
-
-percent_1b = sum(stat_1b)/sum(sum(stat_1b));
-percent_1b(2) = percent_1b(2)+percent_1b(3);
-percent_1b = percent_1b(1:2);
-
-
-
-FIG=figure;
-
-
-hold on;
-
-% l = categorical({'1a','1b'});
-% l = reordercats(l,{'1a','1b'});
-% b = bar(l,[length(cum_fre_1a) length(cum_fre_1b)],0.2,'LineWidth',0.1,'BarWidth',1);
-% b.FaceColor = 'flat';
-% b.CData(1,:)=purple;
-% b.CData(2,:)=orange;
-bar(1:2,[percent_1a(1)*100 zeros(1,1)], 0.2, 'FaceColor',purple,'LineWidth',0.2);
-hold on
-bar(1:2,[zeros(1,1) percent_1b(1)*100], 0.2, 'FaceColor',orange,'LineWidth',0.2);
-xlim([0.85 2.5])
-set(gca,'XTick',1:2,'XTickLabel',...
-    {'1a','1b'});
-set(gca,'TickDir','out')
-FIG.Name = 'peak_tract'
-set(gca,'TickLength',[0.02, 0.01])
-ylabel({'Percentage of',' sequence trajectories, %'})
-% legend('Subtype 1a', 'Subtype 1b','Location','best')
-FIG.Units = 'centimeters';
-
-
-set(gcf,'Position',[5 5 3 5]);
-% set(gcf,'Resize','off');
-set(gca,'Position',[.78 .25 .88 .71]);  %调整 XLABLE和YLABLE不会被切掉
-set(gca,'Position',[.22 .25 .88 .71]);  %调整 XLABLE和YLABLE不会被切掉
-% set(gcf,'Position',[10 10 7.84 6]);
-% set(gca,'Position',[.18 .17 .76 .74]);  %调整 XLABLE和YLABLE不会被切掉
-
-figure_FontSize=8;
-set(get(gca,'XLabel'),'FontSize',figure_FontSize,'Vertical','top');
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch        end
+% %%
+% 
+% set(0,'DefaultAxesFontName','Arial')
+% set(0,'DefaultTextFontName','Arial')
+% set(0,'DefaultAxesFontSize',8)
+% set(0,'DefaultTextFontSize',8)
+% 
+% 
+% load('Peak_trajectory.mat')
+% 
+% percent_1a = sum(stat_1a)/sum(sum(stat_1a));
+% percent_1a(2) = percent_1a(2)+percent_1a(3);
+% percent_1a = percent_1a(1:2);
+% 
+% 
+% percent_1b = sum(stat_1b)/sum(sum(stat_1b));
+% percent_1b(2) = percent_1b(2)+percent_1b(3);
+% percent_1b = percent_1b(1:2);
+% 
+% 
+% 
+% FIG=figure;
+% 
+% 
+% hold on;
+% 
+% % l = categorical({'1a','1b'});
+% % l = reordercats(l,{'1a','1b'});
+% % b = bar(l,[length(cum_fre_1a) length(cum_fre_1b)],0.2,'LineWidth',0.1,'BarWidth',1);
+% % b.FaceColor = 'flat';
+% % b.CData(1,:)=purple;
+% % b.CData(2,:)=orange;
+% bar(1:2,[percent_1a(1)*100 zeros(1,1)], 0.2, 'FaceColor',purple,'LineWidth',0.2);
+% hold on
+% bar(1:2,[zeros(1,1) percent_1b(1)*100], 0.2, 'FaceColor',orange,'LineWidth',0.2);
+% xlim([0.85 2.5])
+% set(gca,'XTick',1:2,'XTickLabel',...
+%     {'1a','1b'});
 % set(gca,'TickDir','out')
-set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle');
-set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.32, 0.5, 0]);
-set(findobj('FontSize',10),'FontSize',figure_FontSize);
-set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
-ylim([0 60])
-set(gca,'YTick', [0 30 60])
-set(gca,'TickLength',[0.035, 0.03])
-try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      end
+% FIG.Name = 'peak_tract'
+% set(gca,'TickLength',[0.02, 0.01])
+% ylabel({'Percentage of',' sequence trajectories, %'})
+% % legend('Subtype 1a', 'Subtype 1b','Location','best')
+% FIG.Units = 'centimeters';
+% 
+% 
+% set(gcf,'Position',[5 5 3 5]);
+% % set(gcf,'Resize','off');
+% set(gca,'Position',[.78 .25 .88 .71]);  %调整 XLABLE和YLABLE不会被切掉
+% set(gca,'Position',[.22 .25 .88 .71]);  %调整 XLABLE和YLABLE不会被切掉
+% % set(gcf,'Position',[10 10 7.84 6]);
+% % set(gca,'Position',[.18 .17 .76 .74]);  %调整 XLABLE和YLABLE不会被切掉
+% 
+% figure_FontSize=8;
+% set(get(gca,'XLabel'),'FontSize',figure_FontSize,'Vertical','top');
+% % set(gca,'TickDir','out')
+% set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle');
+% set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.32, 0.5, 0]);
+% set(findobj('FontSize',10),'FontSize',figure_FontSize);
+% set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
+% ylim([0 60])
+% set(gca,'YTick', [0 30 60])
+% set(gca,'TickLength',[0.035, 0.03])
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      end
 
