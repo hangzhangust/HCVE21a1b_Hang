@@ -29,4 +29,4 @@ For any questions or comments, please email at zhanghang135512@gmail.com.
 
 ## License
 
-TBD
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
