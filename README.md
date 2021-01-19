@@ -29,4 +29,4 @@ For any questions or comments, please email at zhanghang135512@gmail.com.
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
