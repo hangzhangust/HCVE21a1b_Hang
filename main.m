@@ -144,11 +144,7 @@ clear;
 clc;
 run suppfigure10.m
 
-% (b) was generated using Pymol, check E21a.pse and E21b.pse for details
-
 %% Supp. Fig. 11 Designing  a  classifier  to  determine  optimal  escape  time  for  E2  1bbased on the available knowledge of experimentally or clinically identified escapemutations.
 clear;
 clc;
 run suppfigure11.m
-
-% (b) was generated using Pymol, check E21a.pse and E21b.pse for details
