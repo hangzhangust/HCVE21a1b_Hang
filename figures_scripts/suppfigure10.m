@@ -1,21 +1,34 @@
-
-%% 1a
+%%1a
 load('epitopes_1a.mat')
-ind = starting>=384 & ending<=746;
+ind=[];
 
-starting = starting(ind);
-
-ending = ending(ind);
-
-peptides_con = peptides_con(ind);
-ind_con = ind_con(ind);
+for i = 1:length(starting)
+    for j=i+1:length(starting)
+        common = length(intersect(starting(i):ending(i),starting(j):ending(j)));
+        
+        if common == length(starting(i):ending(i)) 
+            ind = [ind; i];
+        else
+            if common == length(starting(j):ending(j))
+                
+            ind =[ind ;j];
+            end
+        end
+        
+    end
+end
+starting(ind)=[];
+ending(ind)=[];
+ind_con(ind)=[];
 cov_1a= [];
 for i = 1:length(starting)
     cov_1a = [cov_1a starting(i):ending(i)];
 end
 
-% discon
 ind = zeros(1,length(pos));
+
+
+
 for i =1:length(pos)
     if all(pos{1,i}>=384 & pos{1,i}<=746)
         ind(i)=1;
@@ -26,33 +39,67 @@ ind = logical(ind);
 peptides_dis = peptides_dis(ind);
 pos = pos(ind);
 ind_dis = ind_dis(ind);
+ind=[];
+for i = 1:length(pos)
+    for j=i+1:length(pos)
+        common = length(intersect(pos{1,i},pos{1,j}));
+        
+        if common == length(pos{1,i}) 
+            ind = [ind; i];
+        else
+            if common == length(pos{1,j})
+                
+            ind =[ind ;j];
+            end
+        end
+        
+    end
+end
+pos(ind)=[];
+ind_dis(ind)=[];
 for i = 1:length(pos)
     cov_1a = [cov_1a pos{1,i}];
 end
+cov_1a = unique(cov_1a);
 
-total_1a = length(peptides_dis)+length(peptides_con);
-cov_1a=unique(cov_1a);
+unique_1a = length(starting)+length(pos)
 ind_1a = [ind_con ind_dis];
-
-
 %% 1b
 load('epitopes_1b.mat')
-cov_1b=[];
-ind = starting>=384 & ending<=746;
+ind=[];
+for i =1:size(ind_dis,1)
+    tmp{i} = ind_dis(i,:);
+end
+ind_dis=tmp;
 
-starting = starting(ind);
 
-ending = ending(ind);
-
-peptides_con = peptides_con(ind);
-ind_con = ind_con(ind);
-
+for i = 1:length(starting)
+    for j=i+1:length(starting)
+        common = length(intersect(starting(i):ending(i),starting(j):ending(j)));
+        
+        if common == length(starting(i):ending(i)) 
+            ind = [ind; i];
+        else
+            if common == length(starting(j):ending(j))
+                
+            ind =[ind ;j];
+            end
+        end
+        
+    end
+end
+starting(ind)=[];
+ending(ind)=[];
+ind_con(ind)=[];
+cov_1b= [];
 for i = 1:length(starting)
     cov_1b = [cov_1b starting(i):ending(i)];
 end
 
-% discon
 ind = zeros(1,length(pos));
+
+
+
 for i =1:length(pos)
     if all(pos{1,i}>=384 & pos{1,i}<=746)
         ind(i)=1;
@@ -63,14 +110,49 @@ ind = logical(ind);
 peptides_dis = peptides_dis(ind);
 pos = pos(ind);
 ind_dis = ind_dis(ind);
+ind=[];
+for i = 1:length(pos)
+    for j=i+1:length(pos)
+        common = length(intersect(pos{1,i},pos{1,j}));
+        
+        if common == length(pos{1,i}) 
+            ind = [ind; i];
+        else
+            if common == length(pos{1,j})
+                
+            ind =[ind ;j];
+            end
+        end
+        
+    end
+end
+pos(ind)=[];
+ind_dis(ind)=[];
 for i = 1:length(pos)
     cov_1b = [cov_1b pos{1,i}];
 end
+cov_1b = unique(cov_1b);
 
-total_1b = length(peptides_dis)+length(peptides_con);
-cov_1b=unique(cov_1b);
-
+unique_1b = length(starting)+length(pos)
 ind_1b = [ind_con ind_dis];
+
+%% load ref_B_cell
+
+load('IEDB_id.mat')
+[~,I,miss]=intersect(cell2mat(epitope_id),str2double(ind_1a'));
+
+%6 missing ones to check manually
+% all from ref id: 1001984 
+miss = str2double(ind_1a(setdiff(1:71,miss)));
+
+
+ref_1a = unique(cell2mat(ref_id(I)));
+
+
+[~,I,~]=intersect(cell2mat(epitope_id),str2double(ind_1b'));
+
+ref_1b = unique(cell2mat(ref_id(I)));
+
 
 %% plot figure
 label_xaxis_data = cellstr(num2str((1:363)'));
