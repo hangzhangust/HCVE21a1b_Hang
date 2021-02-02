@@ -212,12 +212,13 @@ x = -2:.5:3; %xaxis
 y = P(1)*x+P(2);
 plot(x,y,'k--','LineWidth',1)
 % h = legend('(34)','(34) M299V','(35)','(36)','(36) T292A','(37)','Location','eastoutside','Orientation','horizontal','NumColumns',1);
-h = legend('(33)','(33) M299V','(34)','(35)','(35) T292A','(36)','Location','eastoutside');
+h = legend('(27)','(27) M299V','(28)','(29)','(29) T292A','(30)','Location','eastoutside','Orientation','vertical');
 % h = legend('(25)','(25) M299V','(26)','(27)','(27) T292A','(28)','Location','eastoutside','Orientation','vertical');
 legend boxoff
 set(h,...
     'Position',[0.680104166666667 0.331023372843418 0.30646188494189 0.467344682712138],...
-    'Orientation','horizontal');
+    'Orientation','horizontal','NumColumns',1);
+
 ylim([-2 3]);
 xlim([-2 5])
 xticks([-4:1:5])
@@ -233,13 +234,12 @@ set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle');
 set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.16, 0.5, 0]);
 set(findobj('FontSize',8),'FontSize',figure_FontSize);
 set(gca,'TickLength',[0.02, 0.03])
-set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
-try 
-    print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); 
 
-catch
-   
-end
+set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
+set(h,...
+    'Position',[0.680104166666667 0.331023372843418 0.30646188494189 0.467344682712138],...
+    'Orientation','horizontal','NumColumns',1);
+
 
 %% generate the correlation of the con-only model
 clear;

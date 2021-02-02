@@ -33,6 +33,7 @@ chim_id = find(paient_id==0);
 
 % remove outliers, chimpanzee's sequences and sequence without information;
 remove_id = unique([chim_id;No_confidence;outliers ]);
+header(remove_id)=[];
 sequences(remove_id)=[];
 paient_id(remove_id)=[];
 
