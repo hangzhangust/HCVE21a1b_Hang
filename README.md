@@ -20,9 +20,6 @@ Evolutionary modelling of HCV subtypes provides rationale for their different di
 3. For generating the protein structures:
    * Pymol (https://pymol.org)
  
-## Contributing
-
-TBD
 
 ## Troubleshooting
 For any questions or comments, please email at zhanghang135512@gmail.com. 
