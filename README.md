@@ -1,7 +1,8 @@
-# Title
-
-TBD
-
+# Details
+#### Title of paper
+Evolutionary modelling of HCV subtypes provides rationale for their different disease outcomes
+#### Authors
+Hang Zhang, Ahmed A. Quadeer and Matthew R. McKay
 ## MATLAB Toolboxes Requirements
 1. Bioinformatics
 2. Communications System
@@ -20,12 +21,9 @@ TBD
 3. For generating the protein structures:
    * Pymol (https://pymol.org)
  
-## Contributing
-
-TBD
 
 ## Troubleshooting
-For any questions or comments, please email at zhanghang135512@gmail.com. 
+For any questions or comments, please email at hzhangbr@ust.hk. 
 
 ## License
 
