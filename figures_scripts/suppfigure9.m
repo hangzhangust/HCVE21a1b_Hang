@@ -1,225 +1,112 @@
-exposed_1a = [421,422,423,425,427,428,429,430,431,433,434,435,436,438,439,442,443,444,446,447,448,449,450,451,452,492,493,495,496,498,500,501,510,512,513,514,515,517,520,521,522,523,524,525,527,528,529,531,532,533,534,538,540,541,548,550,556,557,558,559,560,561,562,563,565,566,567,570,571,573,574,575,576,577,579,580,583,584,585,597,598,599,604,605,606,610,612,613,615,619,620,622,623,624,625,626,627,628,629,630,632,633,634,635,636,637,639,641,645];
-%NC paper
-exposed_1b=[410,411,412,414,415,416,417,418,419,421,422,423,424,427,428,430,431,432,433,434,435,438,439,442,443,444,445,446,447,448,449,450,451,453,454,455,456,457,458,460,461,463,464,466,467,469,470,471,473,474,476,477,478,479,480,481,482,483,484,485,488,489,490,492,493,496,498,501,510,512,513,514,515,520,521,522,523,524,525,526,527,528,529,531,532,533,534,538,540,542,543,545,546,548,549,556,558,560,561,562,570,573,574,576,577,578,584,586,587,590,591,593,595,596,604,606,610,612,622,623,624,625,626,627,628,629,630,632,634,635,636,637,639,641,645,646,647];
-[~,ia,ib] = intersect(exposed_1a,exposed_1b);
-
-exposed_1b = exposed_1b(ib);
-exposed_1a = exposed_1a(ia);
-
-load('escape_time_1a_500.mat', 'mean_escape_time');
 load('mean_escape_time_1b.mat')
-escape_time_1b = all_mean_escape_time_1b(exposed_1b-383);
-escape_time_1a = mean_escape_time(exposed_1a-383);
-
-% label_xaxis_data = cellstr(num2str(exposed_1a'));
-
-label_xaxis_data = cellstr(num2str(exposed_1a'));
+load('escape_time_1a_500.mat')
 
 
-% show the first half
-label_xaxis_data  = label_xaxis_data (1:40);
-escape_time_1a = escape_time_1a(1:40);
-escape_time_1b= escape_time_1b(1:40);
-thresh=200;
-idx_high = escape_time_1a>=thresh & escape_time_1b>=thresh;
+run startup.m
 
-label_yaxis_data = {'Subtype 1a','Subtype 1b'};
+% [buried_residues,exposed_1b]=classify_buried_exposed('raptorx.txt');
+% mean_escape_time = mean_escape_time(exposed_1a-383);
+% all_mean_escape_time_1b = all_mean_escape_time_1b(exposed_1b-383);
 
 
+data = [mean_escape_time  all_mean_escape_time_1b ];
+G = [zeros(size(mean_escape_time)) ones(size(all_mean_escape_time_1b))];
 
-% label_yaxis_data = {80,100,120,140};
 
-
-
-map = zeros(length(label_yaxis_data),length(label_xaxis_data));
-for kk = 1:length(escape_time_1a)
-    map(1,kk) = floor(escape_time_1a(kk));
-end
-for kk = 1:length(escape_time_1b)
-    map(2,kk) = floor(escape_time_1b(kk));
-end
-
-% map  = flip(map,1);
 set(0,'DefaultAxesFontName','Arial')
 set(0,'DefaultTextFontName','Arial')
 set(0,'DefaultAxesFontSize',8)
 set(0,'DefaultTextFontSize',8)
-
+L=363;
+box_lineWidth = 0.75;
+box_widths_value = 0.5;
+black = [0 0 0];
+box_color = [black;black];
+box_color_transparency = 0; %faceAlpha
+median_lineWidth = 0.75;
+median_color = 'k';
+whisker_value = 1.5;
+outlier_marker = '';
+outlier_markerSize = 3.5;
+outlier_marker_edgeWidth = 0.001;
+outlier_marker_edgeColor = 'w';
+outlier_jitter_value = 0;label_xaxis_data = {'Subtype 1a',sprintf('Subtype 1b')};
+text_ylabel = 'Escape time of all residues';
+text_xlabel = '';
+text_title = '';%'E2-escape mutations [Keck2009],[Morin2012],[Bailey2015]';
+label_orientation_choice = 'horizontal'; %'horizontal'
+ylim_min = 0;
+ylim_max = 0.2;
+savefig = 0;
+savefig_name = 'escape_time_compare';
+fig_width_cm = 4;
+fig_height_cm = 5;
 FIG=figure;
-% subplot(2,1,2)
-% [grad,im]=colorGradient(	hex2rgb('#FCFAF2'),hex2rgb('#4A225D'),128);
-% [grad,im]=colorGradient(	[0.21569,0.49412,0.72157],[0.89412,0.10196,0.1098],128);
-load('color_gradient.mat')
-grad = gradient;
-h=heatmap(label_xaxis_data,label_yaxis_data,map,'GridVisible','off','Colormap',grad,'ColorLimits',[0 200],'ColorbarVisible','off','FontName','Arial','FontSize',8);
+set(gcf,'renderer','Painters')
 
-% set(struct(h).NodeChildren(3), 'XTickLabelRotation', 90);
-% text('Units', 'Normalized', 'Position', [-0.09,0.5],'String','Escape time threshold, \tau','Rotation',90)
-% ,'FontName','Arial','FontSize',8,'FontWeight','Bold'
-
-FIG.Units = 'centimeters';
-FIG.Name = 'RBall_thre_1b';
-set(gcf,'Position',[10 10 20 2.4]);
-% ylabel('Escape time threshold, \tau')
-set(gca,'Position',[.08 .3 .91 .6]);  %调整 XLABLE和YLABLE不会被切掉
-
-% set(FIG, 'DefaultTextFontSize', 8);
-% set(get(gca,'XLabel'),'FontSize',figure_FontSize,'Vertical','top','FontWeight','Bold');
-% set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle','FontWeight','Bold');
-% set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.05, 0.5, 0]);
-% set(findobj('FontSize',10),'FontSize',figure_FontSize);
-% set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',0);
-% set(gca, 'LineWidth',1)
-% set(gca,'FontName','Arial','FontSize',8,'FontWeight','Bold')
-
-
-% text(0.2,0.6,'Escape time threshold, \tau','Rotation',90)
-% set(gcf,'PaperUnits','centimeters','PaperPosition',[0 0 12  12])
-% print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600');
-% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');     end
-
-FIG=figure
-
-hold on
-
-idx_high = find(idx_high);
-
-for i = idx_high
-label_xaxis_data{i,1} = (convertStringsToChars(strjoin(['\bf',label_xaxis_data(i)])));
-text(i-0.2,2,'\ast','FontSize',12)
-end
-
-FIG.Name  = 'xlabel';
-
-set(gca,'XTick',1:40,'XTickLabel',label_xaxis_data);
-
-set(gca,'YTick',[])
-xlim([0.5 40.5])
-FIG.Units = 'centimeters';
-FIG.Name = 'xlabel';
-set(gcf,'Position',[10 10 20 2.4]);
-% ylabel('Escape time threshold, \tau')
-set(gca,'Position',[.08 .3 .91 .3]);  %调整 XLABLE和YLABLE不会被切掉
-% set(gca,'YTick',[]);
-
-xtickangle(45)
-% ylabel('Minimum escape time, t^{anti}')
-% ylabel('Minimum escape time, t^{min}_{e}')
-
-
-% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');     end
-
-% print(FIG, '-depsc2', '-r600', '-tiff', '-loose', ['C:\Users\27909\Desktop\' FIG.Name]);
-
-%% show the second half
-exposed_1a = [421,422,423,425,427,428,429,430,431,433,434,435,436,438,439,442,443,444,446,447,448,449,450,451,452,492,493,495,496,498,500,501,510,512,513,514,515,517,520,521,522,523,524,525,527,528,529,531,532,533,534,538,540,541,548,550,556,557,558,559,560,561,562,563,565,566,567,570,571,573,574,575,576,577,579,580,583,584,585,597,598,599,604,605,606,610,612,613,615,619,620,622,623,624,625,626,627,628,629,630,632,633,634,635,636,637,639,641,645];
-%NC paper
-exposed_1b=[410,411,412,414,415,416,417,418,419,421,422,423,424,427,428,430,431,432,433,434,435,438,439,442,443,444,445,446,447,448,449,450,451,453,454,455,456,457,458,460,461,463,464,466,467,469,470,471,473,474,476,477,478,479,480,481,482,483,484,485,488,489,490,492,493,496,498,501,510,512,513,514,515,520,521,522,523,524,525,526,527,528,529,531,532,533,534,538,540,542,543,545,546,548,549,556,558,560,561,562,570,573,574,576,577,578,584,586,587,590,591,593,595,596,604,606,610,612,622,623,624,625,626,627,628,629,630,632,634,635,636,637,639,641,645,646,647];
-[~,ia,ib] = intersect(exposed_1a,exposed_1b);
-
-exposed_1b = exposed_1b(ib);
-exposed_1a = exposed_1a(ia);
-
-load('escape_time_1a_500.mat', 'mean_escape_time');
-load('mean_escape_time_1b.mat')
-escape_time_1b = all_mean_escape_time_1b(exposed_1b-383);
-escape_time_1a = mean_escape_time(exposed_1a-383);
-
-% label_xaxis_data = cellstr(num2str(exposed_1a'));
-
-label_xaxis_data = cellstr(num2str(exposed_1a'));
-label_xaxis_data  = label_xaxis_data (41:end);
-escape_time_1a = escape_time_1a(41:end);
-escape_time_1b= escape_time_1b(41:end);
-thresh=200;
-idx_high = escape_time_1a>=thresh & escape_time_1b>=thresh;
-
-label_yaxis_data = {'Subtype 1a','Subtype 1b'};
+x1=0.8+0.4*(rand(length(mean_escape_time),1));
+x2=1.8+0.4*(rand(length(all_mean_escape_time_1b),1));
+size_marker = 20;
+% green = [27 129 62]/255;
+% lightgreen = (1-green)*0.6+green;
+f1=scatter(x1,mean_escape_time ,'o','MarkerEdgeColor','w','MarkerFaceColor',purple,'SizeData',size_marker,'LineWidth',0.01);f1.MarkerFaceAlpha = 0.6;hold on 
+f2=scatter(x2,all_mean_escape_time_1b,'o','MarkerEdgeColor','w','MarkerFaceColor',orange,'SizeData',size_marker,'LineWidth',0.01);f2.MarkerFaceAlpha = f1.MarkerFaceAlpha;hold on
 
 
 
-% label_yaxis_data = {80,100,120,140};
-
-
-
-map = zeros(length(label_yaxis_data),length(label_xaxis_data));
-for kk = 1:length(escape_time_1a)
-    map(1,kk) = floor(escape_time_1a(kk));
-end
-for kk = 1:length(escape_time_1b)
-    map(2,kk) = floor(escape_time_1b(kk));
-end
-
-% map  = flip(map,1);
-set(0,'DefaultAxesFontName','Arial')
-set(0,'DefaultTextFontName','Arial')
-set(0,'DefaultAxesFontSize',8)
-set(0,'DefaultTextFontSize',8)
-
-FIG=figure;
-% subplot(2,1,2)
-% [grad,im]=colorGradient(	hex2rgb('#FCFAF2'),hex2rgb('#4A225D'),128);
-% [grad,im]=colorGradient(	[0.21569,0.49412,0.72157],[0.89412,0.10196,0.1098],128);
-load('color_gradient.mat')
-grad = gradient;
-h=heatmap(label_xaxis_data,label_yaxis_data,map,'GridVisible','off','Colormap',grad,'ColorLimits',[0 200],'ColorbarVisible','off','FontName','Arial','FontSize',8);
-
-% set(struct(h).NodeChildren(3), 'XTickLabelRotation', 90);
-% text('Units', 'Normalized', 'Position', [-0.09,0.5],'String','Escape time threshold, \tau','Rotation',90)
-% ,'FontName','Arial','FontSize',8,'FontWeight','Bold'
-
-FIG.Units = 'centimeters';
-FIG.Name = 'RBall_thre_1b';
-set(gcf,'Position',[10 10 20 2.4]);
-% ylabel('Escape time threshold, \tau')
-set(gca,'Position',[.08 .3 .91 .6]);  %调整 XLABLE和YLABLE不会被切掉
-
-% set(FIG, 'DefaultTextFontSize', 8);
-% set(get(gca,'XLabel'),'FontSize',figure_FontSize,'Vertical','top','FontWeight','Bold');
-% set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle','FontWeight','Bold');
-% set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.05, 0.5, 0]);
-% set(findobj('FontSize',10),'FontSize',figure_FontSize);
-% set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',0);
-% set(gca, 'LineWidth',1)
-% set(gca,'FontName','Arial','FontSize',8,'FontWeight','Bold')
-
-
-% text(0.2,0.6,'Escape time threshold, \tau','Rotation',90)
-% set(gcf,'PaperUnits','centimeters','PaperPosition',[0 0 12  12])
-% print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600');
-% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');     end
-
-FIG=figure
-
-hold on
-
-idx_high = find(idx_high);
-
-for i = idx_high
-label_xaxis_data{i,1} = (convertStringsToChars(strjoin(['\bf',label_xaxis_data(i)])));
-text(i-0.2,2,'\ast','FontSize',12)
-end
-
-FIG.Name  = 'xlabel';
-
-set(gca,'XTick',1:40,'XTickLabel',label_xaxis_data);
-
-set(gca,'YTick',[])
-xlim([0.5 40.5])
-FIG.Units = 'centimeters';
-FIG.Name = 'xlabel';
-set(gcf,'Position',[10 10 20 2.4]);
-% ylabel('Escape time threshold, \tau')
-set(gca,'Position',[.08 .3 .91 .3]);  %调整 XLABLE和YLABLE不会被切掉
-% set(gca,'YTick',[]);
-
-xtickangle(45)
-% ylabel('Minimum escape time, t^{anti}')
-% ylabel('Minimum escape time, t^{min}_{e}')
-
-
-% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');     end
+figure_boxplot(data,G,...
+    box_lineWidth,box_widths_value,box_color,box_color_transparency,...
+    median_lineWidth,median_color,...
+    whisker_value,...
+    outlier_marker,outlier_markerSize,outlier_marker_edgeWidth,outlier_marker_edgeColor,outlier_jitter_value,...
+    label_xaxis_data,text_ylabel,text_xlabel,text_title,label_orientation_choice,...
+    ylim_min,ylim_max,...
+    savefig,savefig_name,fig_width_cm,fig_height_cm);
+% V=violinplot(data, [repmat("Subtype 1a",1,length(mean_escape_time)) repmat("Subtype 1b",1,length(all_mean_escape_time_1b))],'EdgeColor' ,[0 0 0],'BoxColor' ,[0 0 0]);
+% SizeData=10;
+% ylabel({'Escape time of all residues'});
+% V(1, 1).ViolinColor = purple;
+% V(1, 2).ViolinColor = orange;
+% V(1, 1).EdgeColor = 'None';
 % 
-% print(FIG, '-depsc2', '-r600', '-tiff', '-loose', ['C:\Users\27909\Desktop\' FIG.Name]);
+% V(1, 1).MedianPlot.SizeData  =SizeData+30;
+% V(1, 2).MedianPlot.SizeData  =SizeData+30;
+% V(1, 2).EdgeColor = 'None';
+% V(1, 1).ScatterPlot.SizeData  =SizeData;
+% V(1, 2).ScatterPlot.SizeData  =SizeData;
 
-%% Supp. figure 9b can be generated by the respective .pse file
+
+set(gca,'YTick',0:250:500)
+yt = get(gca, 'YTick');
+axis([xlim    0  600])
+xt = get(gca, 'XTick');
+hold on
+plot(xt([1 2]), [1 1]*550, '-k','LineWidth',0.3)
+% plot(xt([1 1]), [0.95 1]*550, '-k','LineWidth',0.3)
+% plot(xt([2 2]), [0.95 1]*550, '-k','LineWidth',0.3)
+P = ranksum(all_mean_escape_time_1b,mean_escape_time,'tail','left')
+
+ind = floor(log10(P));
+P = roundn(P/10^ind,-1);
+t = ['$$ P = ',num2str(P),' \times 10^{',num2str(ind),'} $$'];
+
+% text(1,600,t,'interpreter','latex','FontSize',14)
+
+
+FIG.Name = 'escape_time_compare';
+
+
+FIG.Units = 'centimeters';
+set(gcf,'Position',[10 10 10 8]);
+set(gca,'Position',[.15 .2 .75 .74]);  %调整 XLABLE和YLABLE不会被切掉
+figure_FontSize=8;
+set(get(gca,'XLabel'),'FontSize',figure_FontSize,'Vertical','top');
+% set(gca,'TickDir','out')
+set(get(gca,'YLabel'),'FontSize',figure_FontSize,'Vertical','middle');
+set(get(gca,'YLabel'), 'Units', 'Normalized', 'Position', [-0.17, 0.5, 0]);
+set(findobj('FontSize',10),'FontSize',figure_FontSize);
+set(gca,'TickDir','out')
+set(gca,'TickLength',[0.02, 0.01])
+% set(findobj(get(gca,'Children'),'LineWidth',0.5),'LineWidth',2);
+% try print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600'); catch      print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');     end
+

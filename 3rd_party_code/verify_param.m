@@ -1,4 +1,4 @@
-function z = verify_param(Jstore_mat,msa_bin_unique,weight_seq_unique,num_mutants_combine_array)
+function [r1, r2]= verify_param(Jstore_mat,msa_bin_unique,weight_seq_unique,num_mutants_combine_array)
 % verify_param(Jstore,msa_bin_unique,weight_seq_unique,num_mutants_combine_array)
 % 
 % Verify the couplings
@@ -124,6 +124,9 @@ arrayline_max = max([single_MCMC; single_MSA]);
 arrayline = arrayline_min:0.01:arrayline_max;
 FIG = figure;
 plot(single_MSA,single_MCMC,'o','MarkerEdgeColor',color,'MarkerFaceColor',color,'MarkerSize',markersize);hold;grid off;
+
+r1 = corr(single_MSA,single_MCMC);
+
 plot(arrayline,arrayline,'k')
 xlabel({'Single mutant probability (MSA)'})
 ylabel({'Single mutant', 'probability (Model)'})
@@ -194,6 +197,7 @@ arrayline = arrayline_min:0.01:arrayline_max;
 FIG=figure;
 FIG.Name = 'double_3a';
 plot(double_MSA_flat,double_MCMC_flat,'o','MarkerEdgeColor',color,'MarkerFaceColor',color,'MarkerSize',markersize);hold;grid off;
+r2 = corr(double_MSA_flat,double_MCMC_flat);
 plot(arrayline,arrayline,'k')
 xlabel({'Double mutant probability (MSA)'})
 ylabel({'Double mutant', 'probability (Model)'})

@@ -22,24 +22,24 @@ addpath figures_scripts
 
 % load patient id and sequence id without patient information
 load('NumofPatient_1bE2.mat','No_confidence','NumofPatient')
-paient_id  = cell2mat(NumofPatient{1,1});
+patient_id  = cell2mat(NumofPatient{1,1});
 
 % find outliers 
 outliers = find_outliers(sequences);
 
 % sequence from chimpanzees
-chim_id = find(paient_id==0);
+chim_id = find(patient_id==0);
 
 
 % remove outliers, chimpanzee's sequences and sequence without information;
 remove_id = unique([chim_id;No_confidence;outliers ]);
 header(remove_id)=[];
 sequences(remove_id)=[];
-paient_id(remove_id)=[];
+patient_id(remove_id)=[];
 
 
 % re-weight sequences according to number of sequences from each patient
-weight_seq = get_weight_seq(paient_id);
+weight_seq = get_weight_seq(patient_id);
 
 % feed the sequences and weight_seq to the MPF-BML-GUI to train the model
 % Code for running MPF-BML is freely available at <https://github.com/ahmedaq/MPF-BML-GUI>. 
@@ -120,32 +120,40 @@ run suppfigure4.m
 clear;
 clc;
 run suppfigure5_and_suppfigure6.m
-
-%% Supp. Fig. 7 Comparison  of  the  residue-wise  entropy  of  E2  subtypes  1a  and  1b
+%% Supp. Fig. 7 Robustness of the comparison of the fitness landscapes between subtype 1a and 1b
 clear;
 clc;
 run suppfigure7.m
 
-%% Supp. Fig. 8 Comparison  of  predicted  escape  times  of  all  residues  of  E2  1a  and  1b
+
+%% Supp. Fig. 8 Comparison  of  the  residue-wise  entropy  of  E2  subtypes  1a  and  1b
 clear;
 clc;
 run suppfigure8.m
 
-%% Supp. Fig. 9 Exposed  residues  associated  with  high  escape  time  that  are  commonin  both  subtypes  1a  and  1b
-% (a)
+%% Supp. Fig. 9 Comparison  of  predicted  escape  times  of  all  residues  of  E2  1a  and  1b
 clear;
 clc;
 run suppfigure9.m
 
-% (b) was generated using Pymol, check E21a.pse and E21b.pse for details
-
-%% Supp. Fig. 10 The   B   cell   epitope   coverage   of   E2   for   subtype   1a   and   1b
-% epitopes were obtianed from the IEDB database (https://www.iedb.org/; accessed Jan. 7, 2021)
+%% Supp. Fig. 10 Exposed  residues  associated  with  high  escape  time  that  are  commonin  both  subtypes  1a  and  1b
+% (a)
 clear;
 clc;
 run suppfigure10.m
 
-%% Supp. Fig. 11 Designing  a  classifier  to  determine  optimal  escape  time  for  E2  1bbased on the available knowledge of experimentally or clinically identified escapemutations.
+% (b) was generated using Pymol, check E21a.pse and E21b.pse for details
+%% Supp. Fig. 11 Number  of  residues  with  relatively  short  escape  times  that  are  targeted  by  E2-specificHmAbs  for  subtype  1a  and  1b
 clear;
 clc;
 run suppfigure11.m
+%% Supp. Fig. 12 The   B   cell   epitope   coverage   of   E2   for   subtype   1a   and   1b
+% epitopes were obtianed from the IEDB database (https://www.iedb.org/; accessed Jan. 7, 2021)
+clear;
+clc;
+run suppfigure12.m
+
+%% Supp. Fig. 13 Designing  a  classifier  to  determine  optimal  escape  time  for  E2  1b based on the available knowledge of experimentally or clinically identified escapemutations.
+clear;
+clc;
+run suppfigure13.m
