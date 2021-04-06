@@ -97,8 +97,8 @@ HmAbs_Bailey2017{6} = [402 405 408];
 
 HmAbs_all=[HmAbs_all HmAbs_Bailey2017  HmAbs_Gopal2017 HmAbs_Keck2019 HmAb_Pierce2016];
 
-
-
+% HmAbs_all=[HmAbs_all HmAbs_Bailey2017  HmAbs_Gopal2017 HmAbs_Keck2019 HmAb_Pierce2016];
+% 
 
 
 
@@ -108,7 +108,8 @@ label_xaxis_data =  {'HEPC3',...
     'HC-1','HC-11',' A27','CBH-23','CBH-7',' HC84-20','HC84-24','HC84-26',...
     'HC33-1','HC33-4'};
 
-
+label_xaxis_data =flip(label_xaxis_data);
+HmAbs_all = flip(HmAbs_all);
 
 label_yaxis_data = {'Subtype 1a','Subtype 1b'};
 
@@ -153,6 +154,26 @@ FIG.Name = 'RBthresh';
 set(gcf,'Position',[10 10 20 3]);
 % ylabel('Escape time threshold, \tau')
 set(gca,'Position',[.09 .4 .88 .5]);  %调整 XLABLE和YLABLE不会被切掉
+Ax = gca;
+Ax.XDisplayLabels = nan(size(Ax.XDisplayData));
+% print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');
 
+
+FIG=figure;
+FIG.Units = 'centimeters';
+FIG.Name = 'xlabel';
+xtickangle(45)
+xlim([0.5 35.5])
+set(gcf,'Position',[10 10 20 3]);
+% ylabel('Escape time threshold, \tau')
+set(gca,'Position',[.09 .4 .88 .5]);  %调整 XLABLE和YLABLE不会被切掉
+
+xtick =set(gca,'XTick',1:35,'XTickLabel',...
+    flip({'\bf HEPC3',...
+    'HEPC43','\bf HEPC74','\bf HEPC46','HEPC50','HEPC98','HCV1','AR1A','AR1B','AR2A','AR3A','AR3B',...
+    'AR3C','AR3D','CBH-5','212.1.1','\bf 212.10','212.15','212.25','CBH-4D','CBH-4G','CBH-4B','CBH-20','CBH-21','CBH-22',...
+    'HC-1','HC-11',' A27','CBH-23','CBH-7','\bf HC84-20','HC84-24','HC84-26',...
+    'HC33-1','HC33-4'}),'FontName','Arial');
+% print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');
 % print(['C:\Users\hzhangbr\Desktop\' FIG.Name],'-dpng','-r600');
 % print(['C:\Users\27909\Desktop\' FIG.Name],'-dpng','-r600');

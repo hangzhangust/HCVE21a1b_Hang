@@ -109,7 +109,7 @@ set(findobj('FontSize',8),'FontSize',figure_FontSize);
 
 
 %% Peak Analysis
-prt=80;
+
 
 
 filename = convertStringsToChars("Model_1a_"+prt+".mat");
