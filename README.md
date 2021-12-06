@@ -1,6 +1,6 @@
 # Details
 #### Title of paper
-Evolutionary modelling of HCV subtypes provides rationale for their different disease outcomes
+Evolutionary modeling reveals enhanced mutational flexibility of HCV subtype 1b compared to 1a
 #### Authors
 Hang Zhang, Ahmed A. Quadeer and Matthew R. McKay
 ## MATLAB Toolboxes Requirements
