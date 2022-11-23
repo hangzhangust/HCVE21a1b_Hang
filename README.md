@@ -1,6 +1,6 @@
 # Details
 #### Title of paper
-Evolutionary modeling reveals enhanced mutational flexibility of HCV subtype 1b compared to 1a
+Epistatic interactions promote resistance against direct-acting antivirals targeting the HCV NS3 protein
 #### Authors
 Hang Zhang, Ahmed A. Quadeer and Matthew R. McKay
 ## MATLAB Toolboxes Requirements
@@ -18,7 +18,11 @@ Hang Zhang, Ahmed A. Quadeer and Matthew R. McKay
   
 2. For inferring the maximum entropy models:
    * Minimum probability flow method (MPF-BML) (https://github.com/ahmedaq/MPF-BML-GUI)
-3. For generating the protein structures:
+   
+3. For inferring sectors from the sequences:
+   * RocaSec (https://github.com/ahmedaq/RocaSec) 
+
+4. For generating the protein structures:
    * Pymol (https://pymol.org)
  
 
