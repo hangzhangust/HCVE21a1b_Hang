@@ -1,6 +1,6 @@
 # Details
 #### Title of paper
-HCV E1 influences the fitness landscape of E2 and may enhance  escape from E2-specific antibodies
+Evolutionary modeling reveals enhanced mutational flexibility of HCV subtype 1b compared to 1a
 #### Authors
 Hang Zhang, Ahmed A. Quadeer and Matthew R. McKay
 ## MATLAB Toolboxes Requirements
@@ -20,6 +20,9 @@ Hang Zhang, Ahmed A. Quadeer and Matthew R. McKay
    * Minimum probability flow method (MPF-BML) (https://github.com/ahmedaq/MPF-BML-GUI)
    
 
+3. For generating the protein structures:
+   * Pymol (https://pymol.org)
+ 
 
 ## Troubleshooting
 For any questions or comments, please email at hzhangbr@ust.hk. 
